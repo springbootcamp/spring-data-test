@@ -1,6 +1,7 @@
 repositories {
-    mavenLocal()
-    maven {
-        setUrl("https://nexus.fx.eos.lcl/repository/maven-public/")
-    }
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+
+  gradlePluginPortal()
 }

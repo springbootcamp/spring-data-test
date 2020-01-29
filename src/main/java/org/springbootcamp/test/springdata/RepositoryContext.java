@@ -1,46 +1,25 @@
 package org.springbootcamp.test.springdata;
 
-import java.util.HashMap;
+import java.util.Map;
+import org.springbootcamp.test.springdata.impl.RepositoryContextBuilder;
 
-public abstract class RepositoryContext<E, I> {
+/**
+ * @param <E> type of entity
+ * @param <I> type of id
+ */
+public interface RepositoryContext<E, I> {
 
-  private final IdGenerator<I> idGenerator;
-  private final HashMap<I, E> store;
-
-  protected RepositoryContext(IdGenerator<I> idGenerator, HashMap<I, E> store) {
-    this.idGenerator = idGenerator;
-    this.store = store;
+  static <E, I> RepositoryContextBuilder<E, I> builder(Class<E> entityType, Class<I> idType) {
+    return new RepositoryContextBuilder<E, I>(entityType, idType);
   }
 
-  protected abstract <S extends E> I idFromEntity(S entity);
+  I nextId();
 
-  protected abstract <S extends E> Long versionFromEntity(S entity);
+  I idFromEntity(E entity);
 
-  protected abstract <S extends E> S prepareForSave(S entity, I id, Long version);
+  Long versionFromEntity(E entity);
 
-  public IdGenerator<I> idGenerator() {
-    return idGenerator;
-  }
+  <S extends E> S prepareForSave(S entity, I id, Long version);
 
-  public E get(I id) {
-    return store.get(id);
-  }
-
-  public boolean exists(I id) {
-    return store.containsKey(id);
-  }
-
-  public <S extends E> void put(I id, S entity) {
-    store.put(id, entity);
-  }
-
-  public Iterable<E> values() {
-    return store.values();
-  }
-
-  @Override public String toString() {
-    return "RepositoryContext{" +
-      "store=" + store +
-      '}';
-  }
+  Map<I, E> getStore();
 }

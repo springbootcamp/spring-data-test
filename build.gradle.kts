@@ -1,3 +1,5 @@
+import io.freefair.gradle.plugins.lombok.tasks.GenerateLombokConfig
+
 plugins {
   id("java-library")
   id("io.freefair.lombok")
@@ -19,7 +21,17 @@ dependencies {
   testFixturesImplementation("org.springframework.boot:spring-boot-starter-data-jpa:2.2.4.RELEASE")
 }
 
-val test by tasks.getting(Test::class) {
-  // Use junit platform for unit tests
-  useJUnitPlatform()
+tasks {
+  withType<JavaCompile> {
+    sourceCompatibility = Versions.java
+    targetCompatibility = Versions.java
+  }
+  withType<GenerateLombokConfig> {
+    enabled = false
+  }
+
+  withType<Test> {
+    useJUnitPlatform()
+  }
 }
+

@@ -1,8 +1,8 @@
 package org.springbootcamp.test.springdata;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 class IdGeneratorTest {
 
@@ -11,7 +11,8 @@ class IdGeneratorTest {
     IdGenerator<Boolean> generator = new IdGenerator<Boolean>() {
       boolean value = false;
 
-      @Override public Boolean next() {
+      @Override
+      public Boolean next() {
         return value = !value;
       }
     };

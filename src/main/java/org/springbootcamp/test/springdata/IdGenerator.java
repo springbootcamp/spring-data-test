@@ -3,6 +3,7 @@ package org.springbootcamp.test.springdata;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Supplier;
 
+@FunctionalInterface
 public interface IdGenerator<I> {
 
   Supplier<IdGenerator<Long>> SEQUENCE = () -> new IdGenerator<Long>() {
