@@ -1,6 +1,7 @@
 package org.springbootcamp.test.springdata;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springbootcamp.test.springdata.test.DummyEntity.entity;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -100,10 +101,6 @@ class CrudRepositoryFakeTest {
     repository.save(entity("foo"));
 
     assertThat(repository.findByName("foo")).isNotEmpty();
-  }
-
-  private DummyEntity entity(String name) {
-    return DummyEntity.builder().name(name).build();
   }
 
 

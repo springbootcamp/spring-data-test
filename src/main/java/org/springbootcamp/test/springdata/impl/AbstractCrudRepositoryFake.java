@@ -6,7 +6,7 @@ import org.springbootcamp.test.springdata.CrudRepositoryFake;
 import org.springbootcamp.test.springdata.RepositoryContext;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
-public class AbstractCrudRepositoryFake<E, I> implements CrudRepositoryFake<E, I> {
+public abstract class AbstractCrudRepositoryFake<E, I> implements CrudRepositoryFake<E, I> {
 
   private final RepositoryContext<E, I> context;
 

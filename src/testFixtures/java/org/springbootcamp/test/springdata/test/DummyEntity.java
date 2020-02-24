@@ -21,6 +21,12 @@ import lombok.ToString;
 @Table(name = "DUMMY")
 public class DummyEntity {
 
+  public static DummyEntity entity(String name) {
+    return DummyEntity.builder()
+      .name(name)
+      .build();
+  }
+
   @Id
   private Long id;
 
